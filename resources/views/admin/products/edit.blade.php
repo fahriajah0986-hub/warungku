@@ -4,14 +4,31 @@
 @section('page-title', 'Edit Produk')
 
 @section('content')
-<div class="mx-auto max-w-4xl space-y-6">
+<div class="w-full max-w-5xl space-y-6">
 
     <div>
         <a href="{{ route('admin.products.index') }}"
-           class="text-sm font-medium text-teal-700 hover:text-teal-800">
-            &larr; Kembali ke Daftar Produk
-        </a>
+        class="group inline-flex items-center gap-3 rounded-xl border border-teal-100 bg-white px-4 py-3 text-gray-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:bg-teal-50 hover:shadow-md">
+            <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-700 transition-colors duration-200 group-hover:bg-teal-600 group-hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2">
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+            </span>
 
+            <span>
+                <span class="block text-sm font-semibold">Kembali ke Daftar Produk</span>
+                <span class="mt-0.5 block text-xs text-gray-400 group-hover:text-teal-600">
+                    Lihat semua produk
+                </span>
+            </span>
+        </a>
         <h2 class="mt-4 text-xl font-bold text-gray-800">
             Edit Produk
         </h2>
