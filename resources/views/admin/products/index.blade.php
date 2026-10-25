@@ -6,46 +6,7 @@
 @section('content')
 <div class="space-y-6">
 
-    {{-- Header --}}
-
-<form action="{{ route('admin.products.index') }}" method="GET"
-      class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
-    <input
-        type="text"
-        name="search"
-        value="{{ $search ?? '' }}"
-        placeholder="Cari nama produk..."
-        class="min-w-0 flex-1 rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100">
-
-    <select
-        name="stock_status"
-        class="rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100">
-        <option value="">Semua Stok</option>
-        <option value="available" @selected(($stockStatus ?? '') === 'available')>
-            Tersedia
-        </option>
-        <option value="low" @selected(($stockStatus ?? '') === 'low')>
-            Menipis (1–5)
-        </option>
-        <option value="out" @selected(($stockStatus ?? '') === 'out')>
-            Habis
-        </option>
-    </select>
-
-    <button type="submit"
-            class="rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white hover:bg-teal-700">
-        Terapkan
-    </button>
-
-    @if (request('search') || request('stock_status'))
-        <a href="{{ route('admin.products.index') }}"
-           class="rounded-xl border border-gray-300 px-5 py-3 text-center text-sm font-semibold text-gray-700 hover:bg-gray-50">
-            Reset
-        </a>
-    @endif
-</form>
-
+{{-- Header --}}
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
             <h2 class="text-xl font-bold text-gray-800">
@@ -57,16 +18,72 @@
         </div>
 
         <a href="{{ route('admin.products.create') }}"
-           class="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">
+        class="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700">
             <svg xmlns="http://www.w3.org/2000/svg"
-                 class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 4v16m8-8H4"/>
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"/>
             </svg>
             Tambah Produk
         </a>
     </div>
+
+    {{-- Pencarian dan Filter Produk --}}
+    <div>
+        <form action="{{ route('admin.products.index') }}"
+            method="GET"
+            class="flex flex-col gap-3 sm:flex-row sm:items-center">
+
+            <input
+                type="text"
+                name="search"
+                value="{{ $search ?? request('search') }}"
+                placeholder="Cari nama produk..."
+                class="min-w-0 flex-1 rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
+            >
+
+            <select
+                name="stock_status"
+                class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-100 sm:w-36"
+            >
+                <option value="" @selected(($stockStatus ?? request('stock_status', '')) === '')>
+                    Semua Stok
+                </option>
+
+                <option value="available" @selected(($stockStatus ?? request('stock_status')) === 'available')>
+                    Tersedia
+                </option>
+
+                <option value="low" @selected(($stockStatus ?? request('stock_status')) === 'low')>
+                    Menipis (1–5)
+                </option>
+
+                <option value="out" @selected(($stockStatus ?? request('stock_status')) === 'out')>
+                    Habis
+                </option>
+            </select>
+
+            <button
+                type="submit"
+                class="inline-flex shrink-0 items-center justify-center rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700"
+            >
+                Terapkan
+            </button>
+
+            @if (request('search') || request('stock_status'))
+                <a href="{{ route('admin.products.index') }}"
+                class="inline-flex shrink-0 items-center justify-center rounded-xl border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
+                    Reset
+                </a>
+            @endif
+        </form>
+    </div>
+
 
     {{-- Notifikasi sukses --}}
     @if (session('success'))

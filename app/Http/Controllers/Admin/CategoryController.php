@@ -10,14 +10,37 @@ use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::withCount('products')
-            ->latest()
-            ->paginate(10);
+        $search = $request->input('search');
+        $filter = $request->input('filter', 'all');
 
-        return view('admin.categories.index', compact('categories'));
+        $query = Category::withCount('products');
+
+        // Pencarian berdasarkan nama kategori
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        // Filter berdasarkan jumlah produk
+        if ($filter === 'has_products') {
+            $query->has('products');
+        } elseif ($filter === 'empty') {
+            $query->doesntHave('products');
+        }
+
+        $categories = $query
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin.categories.index', compact(
+            'categories',
+            'search',
+            'filter'
+        ));
     }
+
 
     public function create()
     {
