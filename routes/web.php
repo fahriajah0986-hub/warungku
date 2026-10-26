@@ -1,10 +1,10 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 
 // Halaman utama sementara diarahkan ke login admin
 Route::get('/', function () {
@@ -22,9 +22,8 @@ Route::middleware('guest')->group(function () {
 
 // Halaman admin yang wajib login
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard.index');
-    })->name('dashboard');
+   Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
     Route::resource('products', ProductController::class);
 

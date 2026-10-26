@@ -31,63 +31,115 @@
 
     <!-- Summary cards -->
     <section>
-        <div class="mb-4">
-            <h3 class="text-lg font-bold text-slate-800">Ringkasan Toko</h3>
+        <div class="mb-5">
+            <h3 class="text-lg font-bold tracking-tight text-slate-800">
+                Ringkasan Toko
+            </h3>
+            <p class="mt-1 text-sm text-slate-500">
+                Ringkasan data pengelolaan toko Warungku.
+            </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
 
-            <!-- Total products -->
-            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md">
+            <!-- Total Produk -->
+            <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg">
+                <div class="absolute left-0 top-0 h-1 w-full bg-teal-500"></div>
+
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-sm font-medium text-slate-500">Total Produk</p>
-                        <p class="mt-3 text-3xl font-bold text-slate-800">0</p>
-                        <p class="mt-2 text-xs text-slate-400">Produk terdaftar</p>
+                        <p class="text-sm font-medium text-slate-500">
+                            Total Produk
+                        </p>
+
+                        <p class="mt-3 text-4xl font-bold tracking-tight text-slate-800">
+                            {{ $totalProducts }}
+                        </p>
+
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-teal-500"></span>
+                            <p class="text-xs text-slate-500">
+                                Produk terdaftar
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.8">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-700 transition duration-300 group-hover:bg-teal-600 group-hover:text-white">
+                        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 7h16v13H4z"/>
-                            <path d="m4 7 2-4h12l2 4M9 11h6"/>
+                            <path d="m4 7 2-4h12l2 4"/>
+                            <path d="M9 11h6"/>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Total categories -->
-            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md">
+            <!-- Total Kategori -->
+            <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
+                <div class="absolute left-0 top-0 h-1 w-full bg-blue-500"></div>
+
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-sm font-medium text-slate-500">Total Kategori</p>
-                        <p class="mt-3 text-3xl font-bold text-slate-800">0</p>
-                        <p class="mt-2 text-xs text-slate-400">Kategori produk</p>
+                        <p class="text-sm font-medium text-slate-500">
+                            Total Kategori
+                        </p>
+
+                        <p class="mt-3 text-4xl font-bold tracking-tight text-slate-800">
+                            {{ $totalCategories }}
+                        </p>
+
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+                            <p class="text-xs text-slate-500">
+                                Kategori produk
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.8">
-                            <path d="M4 4h7v7H4zM14 4h6v4h-6zM14 11h6v9h-6zM4 14h7v6H4z"/>
+                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="8" height="8" rx="1.5"/>
+                            <rect x="13" y="3" width="8" height="5" rx="1.5"/>
+                            <rect x="13" y="10" width="8" height="11" rx="1.5"/>
+                            <rect x="3" y="13" width="8" height="8" rx="1.5"/>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- Total transactions -->
-            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md">
+            <!-- Total Transaksi -->
+            <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-lg">
+                <div class="absolute left-0 top-0 h-1 w-full bg-amber-500"></div>
+
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-sm font-medium text-slate-500">Total Transaksi</p>
-                        <p class="mt-3 text-3xl font-bold text-slate-800">0</p>
-                        <p class="mt-2 text-xs text-slate-400">Transaksi tercatat</p>
+                        <p class="text-sm font-medium text-slate-500">
+                            Total Transaksi
+                        </p>
+
+                        <p class="mt-3 text-4xl font-bold tracking-tight text-slate-800">
+                            0
+                        </p>
+
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+                            <p class="text-xs text-slate-500">
+                                Transaksi tercatat
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.8">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 transition duration-300 group-hover:bg-amber-500 group-hover:text-white">
+                        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 3h9l4 4v14H6z"/>
-                            <path d="M14 3v5h5M9 13h7M9 17h7"/>
+                            <path d="M14 3v5h5"/>
+                            <path d="M9 13h7M9 17h7"/>
                         </svg>
                     </div>
                 </div>
